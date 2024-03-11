@@ -47,7 +47,7 @@ func contextSetValue(ctx context.Context, key contextKey, value any) context.Con
 
 func Context(ctx context.Context, l Logger) context.Context {
 	if l == nil {
-		l = logger
+		l = Current()
 	}
 	return contextSetValue(ctx, ContextKeyLogger, l)
 }
@@ -57,5 +57,5 @@ func C(ctx context.Context) (l Logger) {
 	if l, ok = contextGetValue[Logger](ctx, ContextKeyLogger); ok {
 		return l
 	}
-	return logger
+	return Current()
 }
